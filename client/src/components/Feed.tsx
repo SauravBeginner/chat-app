@@ -86,8 +86,8 @@ export default function Feed() {
       {posts.map((post) => (
         <div
           key={post.id}
-          className="bg-white/80 backdrop-blur-sm rounded-xl shadow-sm 
-                                    hover:shadow-md transition-all duration-200 animate-fade"
+          className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md 
+                                    hover:shadow-lg transition-all duration-200 animate-fade"
         >
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center space-x-3">

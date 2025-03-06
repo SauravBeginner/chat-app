@@ -3,6 +3,7 @@ import ChatScreen from "../components/ChatScreen";
 import Sidebar from "../components/Sidebar";
 import Stories from "../components/Stories";
 import Feed from "../components/Feed";
+import { CreatePost } from "../components/CreatePost";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-7 space-y-6">
           <Stories />
+          <CreatePost />
           <Feed />
         </div>
 

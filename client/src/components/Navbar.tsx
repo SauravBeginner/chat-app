@@ -7,9 +7,32 @@ import {
   MessageCircle,
   Bell,
 } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER_URL}/user/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      navigate("/auth/login");
+      toast.success("Logout  successfully!");
+
+      console.log(response);
+    } catch (err) {
+      //@ts-ignore
+      toast.error(err);
+    }
+  };
 
   return (
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
@@ -39,8 +62,12 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-6">
-            <Home className="nav-icon" />
-            <MessageCircle className="nav-icon" />
+            <span onClick={() => navigate("/")}>
+              <Home className="nav-icon" />
+            </span>
+            <span onClick={() => navigate("/chat")}>
+              <MessageCircle className="nav-icon" />
+            </span>
             <div className="relative group">
               <PlusSquare className="nav-icon" />
               <div
@@ -66,7 +93,10 @@ export default function Navbar() {
               className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 p-[2px] cursor-pointer
                           hover:from-blue-600 hover:to-indigo-600 transition-all duration-200"
             >
-              <div className="h-full w-full rounded-full bg-white flex items-center justify-center">
+              <div
+                className="h-full w-full rounded-full bg-white flex items-center justify-center"
+                onClick={handleLogout}
+              >
                 <User className="h-5 w-5 text-gray-700" />
               </div>
             </div>
