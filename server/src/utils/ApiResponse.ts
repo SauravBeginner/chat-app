@@ -1,4 +1,4 @@
-class ApiSuccess {
+class ApiResponse {
   statusCode: number;
   data: any;
   message: string;
@@ -12,4 +12,4 @@ class ApiSuccess {
   }
 }
 
-export { ApiSuccess };
+export { ApiResponse };

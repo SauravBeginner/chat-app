@@ -6,6 +6,7 @@ import { app } from "./app";
 dotenv.config({
   path: "./.env",
 });
+console.log("Clodinary api secretsss", process.env.CLOUDINARY_API_SECRET);
 
 connectDB()
   .then(() => {

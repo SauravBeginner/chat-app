@@ -1,15 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 
 interface AsyncHandlerType {
-  (req: Request, res: Response, next: NextFunction): Promise<void>;
-}
-interface CustomErrorHandler extends Error {
-  code?: number;
-  message: string;
+  (req: Request, res: Response, next: NextFunction): Promise<Response>;
 }
 
 const asyncHandler = (requestHandler: AsyncHandlerType) => {
-  (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
   };
 };
