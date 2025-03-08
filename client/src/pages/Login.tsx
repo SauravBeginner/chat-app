@@ -9,11 +9,13 @@ import axios from "axios";
 interface AuthFormData {
   email: string;
   password: string;
+  userName: string;
 }
 
 export default function Login() {
   const [formData, setFormData] = useState<AuthFormData>({
     email: "",
+    userName: "",
     password: "",
   });
   const [loading, setLoading] = useState<Boolean>(false);
@@ -130,11 +132,15 @@ export default function Login() {
             <Input
               id="email"
               name="email"
-              type="email"
+              type="text"
               required
-              value={formData.email}
+              value={formData.email || formData.userName}
               onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
+                setFormData({
+                  ...formData,
+                  email: e.target.value,
+                  userName: e.target.value,
+                })
               }
               placeholder="Email or UserName"
               label="Email or UserName"
